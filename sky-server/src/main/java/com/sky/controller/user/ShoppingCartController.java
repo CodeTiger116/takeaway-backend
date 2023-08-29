@@ -27,7 +27,7 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
 
     /**
-     * 添加购物车
+     * 添加购物车/点击加号
      * @param shoppingCartDTO
      * @return
      */
@@ -49,6 +49,21 @@ public class ShoppingCartController {
         List<ShoppingCart> list =  shoppingCartService.showShoppingCart();
         return Result.success(list);
     }
+
+
+    /**
+     * 删除购物车商品/点击减号
+     * @param shoppingCartDTO
+     * @return
+     */
+    @PostMapping("/sub")
+    @ApiOperation("/删除购物车商品")
+    public Result sub(ShoppingCartDTO shoppingCartDTO){
+        log.info("删除商品信息：{}",shoppingCartDTO);
+        shoppingCartService.subShoppingCart(shoppingCartDTO);
+        return Result.success();
+    }
+
 
     /**
      * 清空购物车商品
